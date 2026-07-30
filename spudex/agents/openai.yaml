@@ -1,0 +1,4 @@
+interface:
+  display_name: "Spudex"
+  short_description: "Evidence-driven senior engineering execution."
+  default_prompt: "Use Spudex. Match the requested outcome, ground in the repository, make the smallest coherent change, and verify the real path."
