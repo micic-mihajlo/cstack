@@ -2,25 +2,23 @@
 
 pstack for Codex App and CLI.
 
-This is the engineering setup I use with Codex. The main piece is Spudex, a Codex-native port of Cursor's [pstack](https://github.com/cursor/plugins/tree/main/pstack). It covers codebase investigation, planning, implementation, debugging, reviews, verification, PRs, and longer autonomous runs.
+This is the engineering setup I use with Codex. It is a Codex-native port of Cursor's [pstack](https://github.com/cursor/plugins/tree/main/pstack), with codebase investigation, planning, implementation, debugging, reviews, verification, PR work, and longer autonomous runs in one skill.
 
-The repo also includes Unslop, the writing skill I use to strip AI habits from prose without sanding off the writer's voice.
+Unslop is included as one of cstack's callable capabilities. It strips AI habits from prose without sanding off the writer's voice.
 
 ## What's inside
 
-- `spudex/` contains the engineering system, playbooks, helper skills, runtime tools, and docs.
-- `unslop/` contains the standalone writing skill.
+- `cstack/` contains the main skill, every capability, the playbooks, runtime tools, and docs.
 
 ## Install
 
-Clone the repo, then copy either skill into your Codex skills folder:
+Clone the repo, then copy cstack into your Codex skills folder:
 
 ```sh
 git clone https://github.com/micic-mihajlo/cstack.git
-cp -R cstack/spudex ~/.codex/skills/
-cp -R cstack/unslop ~/.codex/skills/
+cp -R cstack/cstack ~/.codex/skills/
 ```
 
 Restart Codex after installing.
 
-Unslop incorporates MIT-licensed material from `blader/humanizer` and `DeweyMarco/declankify`. Its third-party notices are included in the skill folder.
+The bundled Unslop capability incorporates MIT-licensed material from `blader/humanizer` and `DeweyMarco/declankify`. Its third-party notices are included in the capability folder.

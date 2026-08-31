@@ -1,6 +1,0 @@
-interface:
-  display_name: "Spudex"
-  short_description: "Codex-native Spudex-style engineering execution."
-  default_prompt: "Use $spudex. Match the requested outcome, ground in the repository, make the smallest coherent change, forbid fake tests, mocks, and monkey-patching, and verify the real path."
-policy:
-  allow_implicit_invocation: true
