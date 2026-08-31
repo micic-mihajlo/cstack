@@ -1,22 +1,24 @@
-# Codex skills
+# cstack
 
-Two Codex skills for day-to-day engineering and writing.
+pstack for Codex App and CLI.
 
-## Spudex
+This is the engineering setup I use with Codex. The main piece is Spudex, a Codex-native port of Cursor's [pstack](https://github.com/cursor/plugins/tree/main/pstack). It covers codebase investigation, planning, implementation, debugging, reviews, verification, PRs, and longer autonomous runs.
 
-Spudex is a senior engineering execution mode for investigation, implementation, debugging, refactoring, performance work, reviews, and shipping. It emphasizes repository evidence, strict scope control, real-path verification, and candid technical judgment.
+The repo also includes Unslop, the writing skill I use to strip AI habits from prose without sanding off the writer's voice.
 
-## Unslop
+## What's inside
 
-Unslop rewrites or reviews prose to remove common AI tells without changing facts, meaning, register, or the writer's voice. It supports silent use inside larger tasks, direct rewrites, prose reviews, and in-place file editing.
+- `spudex/` contains the engineering system, playbooks, helper skills, runtime tools, and docs.
+- `unslop/` contains the standalone writing skill.
 
 ## Install
 
-Copy either complete skill directory into your Codex skills folder:
+Clone the repo, then copy either skill into your Codex skills folder:
 
 ```sh
-cp -R spudex ~/.codex/skills/
-cp -R unslop ~/.codex/skills/
+git clone https://github.com/micic-mihajlo/cstack.git
+cp -R cstack/spudex ~/.codex/skills/
+cp -R cstack/unslop ~/.codex/skills/
 ```
 
 Restart Codex after installing.
