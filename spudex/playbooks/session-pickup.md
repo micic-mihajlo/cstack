@@ -1,12 +1,11 @@
 ### Session pickup
 
-Own the resume point. Preserve completed work and refresh only facts likely to have drifted.
+**You own the resume point. Read the prior trail and continue it instead of re-deriving it.**
 
-1. Locate the trail named by the user. Use the active workspace's transcript path, the supplied task or cloud-agent URL, or the pushed branch. Do not scan unrelated transcript directories.
-2. Read metadata and the latest messages first, then scan back for decisions, evidence, and unfinished work. When tool policy permits and the trail is too large for the main context, delegate parsing and keep the reduced timeline in the main thread.
-3. Reconstruct operational state. Record the branch, worktree, commits, diff against the intended base, completed checks, open tasks, and decisions already made.
-4. Verify cheap drift-prone facts such as live PR state, remote refs, CI, and external ticket status. Do not redo expensive completed work without a reason.
-5. Separate inherited claims from verified facts. Name the exact resume point and route the remaining work to the matching playbook.
-6. Before declaring completion, verify the inherited artifact against the original goal.
+1. Locate the handoff material. Preferred sources are a named Codex task, a shared thread link, an explicit transcript or summary the user provided, a pushed branch, or a PR. In the app, use task and thread tools to read only the named workstream. In CLI-only environments, use the current transcript or explicit handoff files. Do not scan unrelated private sessions.
+2. Reconstruct operational state. Identify the branch, worktree, open PRs, uncommitted work, decisions already made, and the last durable checkpoint. The inherited trail is authoritative input.
+3. Diff done versus pending. Compare what shipped against what was planned. Name the exact resume point. Do not redo completed work unless the inherited evidence is contradicted by live state.
+4. Route the remainder to the matching playbook. Continue execution, ship a recommendation, ratify or overturn a prior conclusion, or postmortem the failed run. Session pickup ends when the correct downstream playbook takes over.
+5. Verify inherited claims against the original goal on the real artifact. A prior self-report is not proof.
 
-**Reply:** what was inherited, what was refreshed, the resume point, remaining work, and outcome.
+**Reply:** where the prior run stopped, what state you inherited, what still remains, and the routed next step.

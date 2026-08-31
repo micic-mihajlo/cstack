@@ -1,0 +1,32 @@
+{
+  "name": "spudex",
+  "displayName": "Spudex",
+  "upstreamVersion": "0.14.5",
+  "upstreamCommit": "fd878692de15a3069c21c8f429eb0b9f2fe178fa",
+  "description": "Codex-native pstack engineering workflows for writing less, higher-quality code with rigorous parallel execution and real verification.",
+  "author": {
+    "name": "Lauren Tan"
+  },
+  "homepage": "https://github.com/cursor/plugins/tree/main/pstack",
+  "repository": "https://github.com/cursor/plugins",
+  "license": "MIT",
+  "keywords": [
+    "spudex",
+    "pstack",
+    "workflow",
+    "principles",
+    "agent-style",
+    "subagents",
+    "unslop"
+  ],
+  "category": "developer-tools",
+  "tags": [
+    "workflow",
+    "principles",
+    "review",
+    "planning"
+  ],
+  "skill": "./SKILL.md",
+  "capabilities": "./references/capabilities/",
+  "agents": "./agents/"
+}

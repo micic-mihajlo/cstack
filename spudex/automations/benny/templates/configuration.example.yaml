@@ -1,0 +1,225 @@
+# Copy this template to a current-user-owned private path outside every repository.
+# Pin the resulting file's digest in the Codex automation definition; do not trust
+# a checked-out branch to supply or modify this authority-bearing configuration.
+schema_version: 3
+
+automations:
+  triage_name: "benny-triage"
+  reproduce_name: "benny-reproduce"
+  triage_rrule: "RRULE:FREQ=MINUTELY;INTERVAL=5"
+  reproduce_rrule: "RRULE:FREQ=MINUTELY;INTERVAL=5"
+
+state:
+  adapter: "configured-idempotency-store"
+  key_prefix: "benny"
+  require_atomic_claim: true
+  require_fencing_token: true
+  require_atomic_external_write_gate: true
+  claim_ttl_minutes: 360
+  renew_every_minutes: 15
+  max_run_minutes: 300
+
+slack:
+  source_channel_id: "SOURCE_CHANNEL_ID"
+  operations_channel_id: "OPERATIONS_CHANNEL_ID"
+  triage_identity_user_id: "TRIAGE_IDENTITY_USER_ID"
+  read_action: "configured-slack-read-action"
+  thread_post_action: "configured-slack-thread-post-action"
+  file_download_action: "configured-slack-file-download-action"
+  operations_root_post_action: "configured-slack-operations-root-post-action"
+  operations_edit_action: "configured-slack-edit-action"
+  prefer_connected_actions: true
+  optional_bot_token_env: "BENNY_SLACK_BOT_TOKEN"
+  allow_source_root_posts: false
+  allow_worker_slack_writes: false
+  attachments:
+    allowed_mime_types:
+      - "image/png"
+      - "image/jpeg"
+      - "image/webp"
+      - "video/mp4"
+      - "video/quicktime"
+      - "text/plain"
+      - "application/json"
+    allowed_extensions:
+      - ".png"
+      - ".jpg"
+      - ".jpeg"
+      - ".webp"
+      - ".mp4"
+      - ".mov"
+      - ".txt"
+      - ".log"
+      - ".json"
+    require_extension_match: true
+    require_magic_byte_match: true
+    reject_active_content: true
+    allow_archives: false
+    max_count_per_item: 8
+    max_file_bytes: 52428800
+    max_total_bytes_per_item: 157286400
+    max_decoded_text_bytes_per_file: 10485760
+    max_image_pixels_per_file: 40000000
+    max_video_duration_seconds_per_file: 600
+    max_video_frames_per_file: 18000
+    quarantine_subdirectory: "attachments"
+
+repository:
+  host: "github.com"
+  url: "https://github.com/example-org/example-repo"
+  allowlisted_urls:
+    - "https://github.com/example-org/example-repo"
+  default_branch: "main"
+  require_immutable_commit_sha: true
+  commit_signature_verifier_adapter: "configured-commit-signature-verifier-adapter"
+  commit_signature_verifier_action: "configured-commit-signature-verifier-action"
+  trusted_signer_fingerprints:
+    - "SSH:SHA256:trusted-signer-fingerprint-placeholder"
+  require_signature_repository_and_sha_binding: true
+  reject_commit_author_association: true
+  require_human_approval_when_signature_fails: true
+  approval_must_bind_repository_and_sha: true
+  pull_request_action: "configured-draft-pull-request-action"
+  pull_request_url_format: "https://github.com/{owner}/{repo}/pull/{number}"
+  draft_only: true
+
+execution:
+  untrusted_source_sandbox_adapter: "ephemeral-sandbox-adapter-placeholder"
+  attachment_parser_sandbox_adapter: "ephemeral-parser-sandbox-adapter-placeholder"
+  require_ephemeral_sandbox: true
+  require_disposable_attachment_parser_sandbox: true
+  inject_credentials: false
+  allow_host_mounts: false
+  network_default: "deny"
+  allowed_egress: []
+  attachment_parser_network_default: "deny"
+  attachment_parser_allowed_egress: []
+  block_coordinator_control_plane: true
+  max_cpu_seconds: 1800
+  max_memory_bytes: 4294967296
+  max_disk_bytes: 10737418240
+  max_processes: 128
+  max_wall_clock_seconds: 3600
+
+approvals:
+  adapter: "configured-approval-record-adapter"
+  lookup_action: "configured-code-approval-lookup-action"
+  source: "current-user-private-record-store"
+  trusted_anchor: "/absolute/current-user-private/path/to/benny-project"
+  store_path: "/absolute/current-user-private/path/to/benny-project/code-approvals.jsonl"
+  store_relative_path: "code-approvals.jsonl"
+  allowed_approver_user_ids:
+    - "trusted-approver-user-id-placeholder"
+  allow_current_task_user_approval: false
+  record_schema: "benny-code-approval/v1"
+  store_mode: "0600"
+  max_store_bytes: 1048576
+  require_current_user_owner: true
+  require_private_mode: true
+  require_no_follow: true
+  require_componentwise_anchor_walk: true
+  require_retain_directory_handles: true
+  require_canonical_repository_url: true
+  require_full_commit_sha: true
+  require_approver_identity: true
+  require_approved_at_timestamp: true
+  require_exact_repository_and_sha: true
+
+artifacts:
+  trusted_anchor: "/absolute/current-user-private/path/to/benny-project"
+  root: "/absolute/current-user-private/path/to/benny-project/artifacts"
+  root_relative_path: "artifacts"
+  create_unique_per_run_directory: true
+  require_outside_repository: true
+  require_current_user_owner: true
+  directory_mode: "0700"
+  file_mode: "0600"
+  require_descriptor_relative_io: true
+  require_no_follow: true
+  require_componentwise_anchor_walk: true
+  require_retain_directory_handles: true
+  require_exclusive_create: true
+  reject_symlinks: true
+  reject_hardlinks: true
+  require_stable_device_inode: true
+  max_files_per_run: 64
+  max_bytes_per_run: 536870912
+  retention_hours: 24
+
+tracker:
+  type: "linear"
+  adapter_skill_name: "issue-tracker-adapter-placeholder"
+  team: "team-placeholder"
+  project: "project-placeholder"
+  labels:
+    bug: "bug-label-placeholder"
+    performance: "performance-label-placeholder"
+    intake: "intake-label-placeholder"
+    needs_repro: "needs-repro-label-placeholder"
+  status: "intake-status-placeholder"
+  source_link_title: "Slack report"
+  require_compensation_action: true
+
+routing:
+  map_path: ".codex/benny/routing.md"
+  owner_pings_default: false
+  allow_feature_owner_ping: false
+  allow_confirmed_regression_author_ping: false
+
+control:
+  skill_name: "control-target-app"
+  feature_map_path: ".codex/benny/feature-map.md"
+  environment: "safe-test-environment-placeholder"
+
+verdict_markers:
+  bug: "[benny:bug]"
+  performance: "[benny:performance]"
+  other: "[benny:other]"
+  tracker_attribute: "tracker"
+
+status_strings:
+  seen: "Seen"
+  reproducing: "Reproducing"
+  could_not_reproduce: "Could not reproduce"
+  blocked: "Blocked"
+  reproduced: "Reproduced"
+  verifying_existing_fix: "Verifying existing fix"
+  verified_existing_fix: "Verified existing fix"
+  attempting_bounded_fix: "Attempting bounded fix"
+  draft_pull_request_opened: "Draft pull request opened"
+  fix_did_not_land: "Fix did not land"
+
+budgets:
+  max_reports_per_triage_run: 3
+  max_markers_per_reproduce_run: 1
+  max_thread_replies_per_item: 100
+  max_thread_text_bytes_per_item: 262144
+  max_links_per_item: 25
+  max_tracker_results_per_item: 50
+  max_tracker_payload_bytes_per_item: 524288
+  max_repository_results_per_item: 50
+  max_repository_payload_bytes_per_item: 1048576
+  max_patch_bytes_per_item: 2097152
+  poll_seconds: 45
+  verdict_wait_minutes: 45
+  triage_follow_up_minutes: 10
+  triage_total_minutes: 30
+  repro_minutes: 60
+  rejection_window_minutes: 10
+  fix_minutes: 90
+  operations_follow_up_minutes: 45
+  repro_total_minutes: 300
+
+models:
+  triage:
+    slug: "choose-an-available-public-model-slug"
+    reasoning_effort: "medium"
+  reproduce:
+    slug: "choose-an-available-public-model-slug"
+    reasoning_effort: "high"
+  code:
+    slug: "choose-an-available-public-model-slug"
+    reasoning_effort: "high"
+  media_review:
+    slug: "choose-an-available-public-model-slug"
+    reasoning_effort: "medium"

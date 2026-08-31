@@ -1,0 +1,6 @@
+node_modules/
+/scripts/.spudex-tools-install.lock
+/scripts/.spudex-tools-stage-*
+/scripts/.spudex-tools-backup-*
+.DS_Store
+*.log

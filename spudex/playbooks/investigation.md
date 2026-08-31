@@ -1,13 +1,14 @@
 ### Investigation
 
-The deliverable is an evidence-backed answer or recommendation. Stay read-only unless the user also asked for implementation.
+**You own the answer. Plan, route, write.**
 
-1. State the question, scope, and what evidence would answer it.
-2. Inspect the smallest relevant source path, tests, configuration, history, or live state. Use `how` when the subsystem is broad enough to need an architectural map. Use `why` only when motivation or regression history matters.
-3. Trace the data or control flow from entry point to outcome. Separate confirmed behavior from inference.
-4. Verify drift-prone facts against the current source. Run a focused read-only check when it strengthens the answer.
-5. Give the concrete answer first. Include file and symbol pointers, tradeoffs, gotchas, and the most useful next step.
+Read-only requests: "how does X work?", "why was Y built this way?", "are we sure about Z?", "should we do X or Y?". They produce a cited explanation or a recommendation, not a code change.
 
-Do not edit code, open a PR, or turn a diagnosis into a fix without a change request.
+1. Route through the **how** skill (Explain mode for narrow questions, Critique mode for "are we sure?"). For motivation questions, also route through the **why** skill.
+2. Throughput checkpoint stays one line: `throughput checkpoint: n/a, read-only investigation`. The four-item version is for code-shaped work.
+3. Produce the `how`-shaped output (Overview / Key Concepts / How It Works / Where Things Live / Gotchas), or a recommendation with a tradeoffs table if the request is a decision between alternatives.
+4. Apply the **unslop** skill to the reply.
 
-**Reply:** answer, causal path or tradeoff, evidence, uncertainty, and next step.
+No PR, no babysit, no `architect` unless the investigation precedes a code change. If it does, hand back to the user and re-route to Bug fix or Feature.
+
+**Reply:** the investigation output. For "are we sure?" answers, include your real judgment with reasons. Push back if the premise is wrong (see Autonomy).

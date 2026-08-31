@@ -1,14 +1,16 @@
 ### Bug fix
 
-Own the causal chain. Every shipped line must trace to evidence about the failure.
+**You own this task. Plan, review, verify.** Use independent subagents when they improve the investigation or review. Stay in the lead.
 
-1. Capture the failing behavior on the matching surface when possible. Record the exact input, state, status, error, and expected result. If direct reproduction is unavailable, gather the strongest current evidence and state the gap.
-2. Trace the earliest wrong state. Form a small set of hypotheses, use repository history and runtime evidence to eliminate them, and separate confirmed facts from guesses.
-3. Plan the smallest fix that removes the cause. Use `architect` only when the fix changes a material interface, ownership boundary, persistence model, concurrency model, or cross-service contract.
-4. Add a regression test first when it is stable, local, and cheap. Skip it when the required harness would be more brittle than the bug, then name the runtime check that replaces it.
-5. Implement the fix. Delegate only a bounded independent investigation or mechanical slice when tool policy permits. Review every delegated artifact yourself.
-6. Re-run the original failing path on the same surface. Run focused tests, then broader checks based on blast radius. Remove only your own changes that evidence did not justify.
-7. Inspect the exact diff for scope creep, hidden fallback paths, private data, and unrelated edits.
-8. If the user asked to commit or open a PR, run Opening a PR.
+Be scientific. Every shipped line traces to runtime evidence. Belt-and-suspenders that "might help" is a hypothesis, not a fix; it does not ship. When evidence refutes a hypothesis, revert what it motivated. The smallest change the evidence justifies ships, nothing more. Same discipline for Perf, where the evidence is the trace.
 
-**Reply:** the failure, root cause, fix, direct verification, tests, and residual uncertainty.
+1. Reproduce it yourself on the real matching surface from [Codex runtime](../references/codex-runtime.md). Drive the instrumented runtime as far as the available tools allow. If it will not fire, tighten real conditions or add temporary instrumentation. Never manufacture the repro with a mock, fake, stub, or monkey patch. If the required environment or authorization is unavailable, state the exact gap.
+2. Binary-search the cause. Form candidate hypotheses and eliminate them with runtime evidence. Seed the map with [How](../references/capabilities/how/SKILL.md) over the subsystem and [Why](../references/capabilities/why/SKILL.md) over its history. When state is unclear, instrument the real program and observe it. Use an active Codex turn, goal, wait, or requested heartbeat for a long hunt. Confirm the surviving mechanism before Architect or Interrogate. A design grounded on an unconfirmed cause can be unanimously wrong.
+3. Plan the smallest fix the evidence justifies. Use [Architect](../references/capabilities/architect/SKILL.md) when the change crosses a meaningful boundary. Give any implementation worker exclusive scope and review its exact diff.
+4. Verify on the same surface. The original repro must now pass. `Inconclusive` and wrong-surface evidence are not passes. Supporting tests may prove branch behavior, but the real surface proves the bug is absent.
+5. When a real deterministic regression test is possible, land its failing form before the fix so history tells the story. Apply [TDD](../references/capabilities/tdd/SKILL.md). Do not create a mock-based proxy test merely to satisfy this step. Keep the test and fix as separately verifiable units when repository policy permits.
+6. Run [Opening a PR](opening-a-pr.md) only when the user asked to publish a PR. Otherwise hand back the verified local change.
+
+How and Why may run as independent read-only lanes.
+
+**Reply:** what was broken, root cause, fix, how you verified. Include only the minimum bounded failing-then-passing excerpt needed to support the claim. Remove credentials, signed URLs, personal or user data, control characters, and active Markdown. When exact raw output is necessary for an audit, keep it in a local access-controlled artifact and share it only with explicit authority.
