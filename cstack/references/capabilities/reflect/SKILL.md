@@ -25,7 +25,7 @@ Skip trivial conversations and one-off mistakes with no reusable lesson.
 
 ## 2. Spawn three independent reviewers
 
-Spawn all three before waiting. Use read-only roles and validated model choices from [Model roles](../../model-roles.md). Prefer model diversity. If it is unavailable, vary roles and reasoning and disclose the limitation.
+Spawn all three before waiting. Resolve the tooling reviewer from `reflect_tooling`. Resolve the judgment and divergent reviewers from `reflect_judgment_divergent_synthesizer`. Use read-only roles and validate both pairs through [Model roles](../../model-roles.md).
 
 | Lens | Template |
 |---|---|
@@ -37,7 +37,7 @@ Give each reviewer the same evidence pointers and its template. For connector ev
 
 ## 3. Synthesize
 
-After all three complete, spawn one independent synthesizer with `references/synthesizer.md`. It receives the evidence pointers plus full reviewer findings and returns:
+After all three complete, spawn one independent synthesizer with `references/synthesizer.md` using `reflect_judgment_divergent_synthesizer`. It receives the evidence pointers plus full reviewer findings and returns:
 
 - `Accepted`. A specific reusable lesson with evidence and target location.
 - `Rejected`. A tempting lesson that is one-off, already covered, or unsupported.

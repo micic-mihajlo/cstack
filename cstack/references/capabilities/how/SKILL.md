@@ -48,8 +48,8 @@ The right decomposition depends on the question. Use your judgment. Narrow quest
 
 Spawn all explorers before waiting:
 
-- `agent_type`: `explorer`
-- `model`: a validated configured value, otherwise inherit the parent
+- `agent_type`: `explorer` when it accepts `how_explorer`; otherwise override-capable `default` with the explorer prompt and read-only authority
+- model and reasoning: `how_explorer` from [Model roles](../../model-roles.md)
 - writes: forbidden
 
 Each explorer gets the same base prompt from `references/explorer-prompt.md` plus a specific exploration angle naming its slice. Each explorer should:
@@ -67,8 +67,8 @@ Then proceed to Step 3.
 
 Spawn a single read-only Codex subagent that explores and explains in one pass:
 
-- `agent_type`: `explorer`
-- `model`: a validated configured value, otherwise inherit the parent
+- `agent_type`: `explorer` when it accepts `how_explainer`; otherwise override-capable `default` with the explainer prompt and read-only authority
+- model and reasoning: `how_explainer` from [Model roles](../../model-roles.md)
 - writes: forbidden
 
 The agent does its own exploration (Glob, Grep, Read) and writes the explanation directly. Read `references/explainer-prompt.md` for the communication style and output format. Same structure, just no explorer findings as input.
@@ -79,8 +79,8 @@ Proceed to Step 4.
 
 Once all explorers return, spawn one read-only subagent to synthesize their findings into a coherent explanation:
 
-- `agent_type`: `explorer`
-- `model`: a validated configured value, otherwise inherit the parent
+- `agent_type`: `explorer` when it accepts `how_explainer`; otherwise override-capable `default` with the explainer prompt and read-only authority
+- model and reasoning: `how_explainer` from [Model roles](../../model-roles.md)
 - writes: forbidden
 
 The explainer gets all explorers' findings and writes the human-facing explanation (output format below). Read `references/explainer-prompt.md` for the full prompt template. The explainer reconciles overlapping findings, resolves contradictions, and weaves the slices into a unified picture.
@@ -113,11 +113,11 @@ Run the full explain flow above (Steps 1-4). You must understand the architectur
 
 ### Step 2. Spawn Critics
 
-After the explanation is complete, spawn independent architectural critics before waiting. Use validated configured models from [Model roles](../../model-roles.md). Prefer model diversity. If it is unavailable, vary review roles and reasoning and disclose the limitation.
+After the explanation is complete, spawn the full ordered `how_critics` list from [Model roles](../../model-roles.md) before waiting. Its length controls requested fan-out. Preserve deliberate duplicates and disclose when the configured panel has no model-family diversity.
 
 For each critic:
-- `agent_type`: `reviewer` or `architect`
-- `model`: a validated configured model, otherwise inherit the parent
+- `agent_type`: `reviewer` or `architect` when it accepts the corresponding pair; otherwise override-capable `default` with the critic prompt and read-only authority
+- model and reasoning: the corresponding `how_critics` list entry
 - writes: forbidden
 
 Read `references/critic-prompt.md` for the prompt template. Each critic gets:

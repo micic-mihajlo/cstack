@@ -260,9 +260,55 @@ const expectedLocalRequired = [
   "scripts/watch-pr/policy.test.ts",
   "scripts/validate-skill.mjs",
   "scripts/validate-skill.test.mjs",
+  "scripts/validate-model-roles.mjs",
+  "scripts/validate-model-roles.test.mjs",
   "references/capabilities/show-me-your-work/scripts/log.sh",
   ...expectedCapabilities.map((name) => `references/capabilities/${name}/SKILL.md`),
 ];
+
+const expectedModelRoleKeys = [
+  "feature_refactoring",
+  "bug_fix",
+  "perf_issue",
+  "hillclimb",
+  "judgment_and_prose",
+  "hardest_tasks",
+  "how_explorer",
+  "how_explainer",
+  "how_critics",
+  "why_investigators",
+  "why_synthesizer",
+  "reflect_tooling",
+  "reflect_judgment_divergent_synthesizer",
+  "arena_runners",
+  "arena_cross_judge_pool",
+  "swarm_workers",
+  "architect_runners",
+  "interrogate_reviewers",
+];
+
+const modelRoleConsumers = {
+  feature_refactoring: ["playbooks/feature.md", "playbooks/refactoring.md"],
+  bug_fix: ["playbooks/bug-fix.md"],
+  perf_issue: ["playbooks/perf-issue.md"],
+  hillclimb: ["playbooks/hillclimb.md"],
+  judgment_and_prose: ["SKILL.md"],
+  hardest_tasks: ["SKILL.md"],
+  how_explorer: ["references/capabilities/how/SKILL.md"],
+  how_explainer: ["references/capabilities/how/SKILL.md"],
+  how_critics: ["references/capabilities/how/SKILL.md"],
+  why_investigators: ["references/capabilities/why/SKILL.md"],
+  why_synthesizer: ["references/capabilities/why/SKILL.md"],
+  reflect_tooling: ["references/capabilities/reflect/SKILL.md"],
+  reflect_judgment_divergent_synthesizer: [
+    "references/capabilities/reflect/SKILL.md",
+  ],
+  arena_runners: ["references/capabilities/arena/SKILL.md"],
+  arena_cross_judge_pool: ["references/capabilities/arena/SKILL.md"],
+  swarm_workers: ["references/capabilities/swarm/SKILL.md"],
+  architect_runners: ["references/capabilities/architect/SKILL.md"],
+  interrogate_reviewers: ["references/capabilities/interrogate/SKILL.md"],
+};
 
 const symbolicLinks = [];
 const hardLinks = [];
@@ -508,6 +554,31 @@ for (const phrase of [
   "Every implementation receives a `code-reviewer` pass.",
 ]) {
   if (!rootSkill.includes(phrase)) fail(`SKILL.md lacks required rule: ${phrase}`);
+}
+
+const setupSkill = text(
+  join(root, "references", "capabilities", "setup-cstack", "SKILL.md")
+);
+const modelRoles = text(join(root, "references", "model-roles.md"));
+const setupModelRoleKeys = [...setupSkill.matchAll(/^\| \d+ \| `([a-z_]+)` \|/gm)].map(
+  (match) => match[1]
+);
+const referenceModelRoleKeys = [
+  ...modelRoles.matchAll(/^\| `([a-z_]+)` \|/gm),
+].map((match) => match[1]);
+if (setupModelRoleKeys.join("\n") !== expectedModelRoleKeys.join("\n")) {
+  fail(
+    `setup model roles mismatch\nexpected: ${expectedModelRoleKeys.join(", ")}\nactual: ${setupModelRoleKeys.join(", ")}`
+  );
+}
+compareNames("model-role reference", referenceModelRoleKeys.sort(), expectedModelRoleKeys);
+
+for (const key of expectedModelRoleKeys) {
+  for (const consumer of modelRoleConsumers[key]) {
+    if (!text(join(root, consumer)).includes(`\`${key}\``)) {
+      fail(`${consumer} does not consume model role ${key}`);
+    }
+  }
 }
 for (const name of expectedPlaybooks) {
   if (!rootSkill.includes(`playbooks/${name}`)) fail(`SKILL.md does not route playbook ${name}`);

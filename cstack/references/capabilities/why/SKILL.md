@@ -121,8 +121,8 @@ Before delegation, verify that the child's effective sandbox is read-only; a rol
 
 Subagent config for each:
 
-- `agent_type`: `explorer` when it exposes the required read tools, otherwise `default` with an explicit no-write order
-- `model`: a validated configured value from [Model roles](../../model-roles.md), otherwise inherit the parent
+- `agent_type`: `explorer` when it exposes the required read tools and accepts `why_investigators`; otherwise override-capable `default` with the investigator prompt and read-only authority
+- model and reasoning: `why_investigators` from [Model roles](../../model-roles.md)
 - authority: read-only. No comments, ticket edits, messages, configuration changes, or other external writes
 
 Each investigator gets:
@@ -167,8 +167,8 @@ If your scope assessment suggests a single-commit trivial target where the PR de
 
 Spawn one synthesizer subagent:
 
-- `agent_type`: `explorer` when it exposes the required read tools, otherwise `default` with an explicit no-write order
-- `model`: a validated configured value, otherwise inherit the parent
+- `agent_type`: `explorer` when it exposes the required read tools and accepts `why_synthesizer`; otherwise override-capable `default` with the synthesizer prompt and read-only authority
+- model and reasoning: `why_synthesizer` from [Model roles](../../model-roles.md)
 - authority: read-only
 
 The synthesizer gets:

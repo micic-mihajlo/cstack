@@ -5,8 +5,8 @@
   "scripts": {
     "validate": "node validate-skill.mjs",
     "typecheck": "tsc --project watch-pr/tsconfig.json --noEmit --strict",
-    "test": "bun test orch watch-pr bootstrap.test.mjs check-plan.test.mjs safe-log.test.mjs validate-skill.test.mjs worktree-audit.test.mjs",
-    "test:coverage": "bun test --coverage orch watch-pr bootstrap.test.mjs check-plan.test.mjs safe-log.test.mjs validate-skill.test.mjs worktree-audit.test.mjs",
+    "test": "bun test orch watch-pr bootstrap.test.mjs check-plan.test.mjs safe-log.test.mjs validate-model-roles.test.mjs validate-skill.test.mjs worktree-audit.test.mjs",
+    "test:coverage": "bun test --coverage orch watch-pr bootstrap.test.mjs check-plan.test.mjs safe-log.test.mjs validate-model-roles.test.mjs validate-skill.test.mjs worktree-audit.test.mjs",
     "smoke": "./smoke-runtime.sh"
   },
   "dependencies": {

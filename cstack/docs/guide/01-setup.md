@@ -20,9 +20,9 @@ Run:
 $cstack setup-cstack
 ```
 
-[`$cstack setup-cstack`](../../references/capabilities/setup-cstack/SKILL.md) detects the roles and models the current Codex host accepts, keeps the upstream role intent, and lets you override only what you care about.
+[`$cstack setup-cstack`](../../references/capabilities/setup-cstack/SKILL.md) detects the models and reasoning efforts the current Codex host accepts. It then shows all 18 pstack-compatible workflow slots and waits for your choices. There are no presets. Panel entries are ordered lists, and their length controls how many independent subagents run.
 
-If a role has no override, it keeps its default intent. If a role is set to `inherit-parent` or `auto`, the delegated run inherits the parent model instead of forcing a slug.
+Codex keeps model and reasoning effort as separate fields. You can also explicitly choose `inherit-parent` or `auto`, but setup never chooses either for you. Nothing is written until you confirm the complete map.
 
 ## Accept the verification offer, or do not
 

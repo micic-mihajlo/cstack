@@ -21,7 +21,7 @@ Open a todolist with one entry per phase before launching anything.
 1. State the done predicate and the artifact or report the swarm must return.
 2. Choose the shape. Partition into slices, race N workers on identical briefs, or mix both. For a race or mixed shape, declare `first pass`, `rank all`, or `best-of` before spawning.
 3. Set N from the user or derive it from the shape. N is total logical workers. Run them in waves when N exceeds current Codex concurrency.
-4. Pick the role and model from [Model roles](../../model-roles.md) and any validated cstack configuration. Otherwise inherit the parent model and choose the best built-in role. For a model race, name only model slugs validated by the current `spawn_agent` tool.
+4. Resolve `swarm_workers` from [Model roles](../../model-roles.md) and choose the best built-in agent type for the work. For a model race, name only model and reasoning pairs validated by the current subagent control.
 5. Give every writer an exclusive output. Use a worktree, branch, or `/tmp/cstack-swarm-<slug>/worker-<n>/`. Read-only lanes may share sources but never mutable state.
 
 ## Phase B: Fan out

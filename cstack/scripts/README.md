@@ -9,6 +9,7 @@ These scripts carry upstream `pstack` runtime helpers into Codex.
 - `log.sh` appends safe decision-log rows and rejects common credential-shaped cells.
 - `smoke-runtime.sh` runs the production watcher and orchestration store against a real open GitHub pull request.
 - `validate-skill.mjs` checks cstack structure, parity-critical files, dead links, product-surface residue, and the forbidden-test rule.
+- `validate-model-roles.mjs` parses the real version-2 model-role file, enforces all 18 workflow keys and value shapes, applies an optional project overlay, and checks real model-and-effort pairs against a detected host capability map.
 
 The launchers install pinned dependencies into a private staged tree, verify its integrity, and publish it under a single-process lock. The install subprocess is killed after 120 seconds or 4 MiB of captured output; failure preserves the last trusted dependency tree and releases the owner lock. Only the process that acquired the lock removes it. A dead install owner fails closed with the exact stale lock path instead of deleting a possibly live replacement. Install dependencies manually from this directory with `bun install --frozen-lockfile` when needed. Run `bun run typecheck` after changing TypeScript and `bun run validate` after changing the bundle.
 

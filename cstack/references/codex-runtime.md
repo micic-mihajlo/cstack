@@ -23,7 +23,7 @@ Use the callable tools present in the current session as the source of truth. To
 | `generalPurpose` | Codex `default` or `worker` agent role. Use `explorer`, `reviewer`, `code-reviewer`, `security-reviewer`, `docs_researcher`, or another available role when its contract matches. |
 | Readonly agent | Prefer a read-only role such as `explorer` or `reviewer`, explicitly forbid writes, and verify that the child effective sandbox is `read-only`. A role name or prompt is not enforcement, and a live parent permission override can supersede a custom-agent default. |
 | `run_in_background: true` | Spawn independent agents before awaiting them. Continue useful work, then use `wait_agent`. |
-| Cursor model rule | Follow [model roles](model-roles.md). Validate model names against the current spawn tool. Inherit the parent when no validated override exists. |
+| Cursor model rule | Follow the exact workflow key in [model roles](model-roles.md). Validate the model and reasoning pair against the current subagent control. |
 | Cursor `/loop` | Use a persistent `/goal` for one long-running objective. In an agent surface, use goal tools only when the user explicitly requested a goal. Use bounded event waits, live terminal polling, or a scheduled task inside the chat (`heartbeat` in the automation tool contract) for recurring wakeups. |
 | Cursor `/goal` | Codex `/goal` in the app or CLI. Goal text contains both the objective and a measurable completion predicate. It does not grant more permissions. |
 | Watcher wake | Prefer events. Use `wait_threads` for Codex tasks, `wait_agent` for subagents, `write_stdin` for a running terminal, and `scripts/watch-pr/watch-pr` for GitHub PR state. Do not add a second sleep loop. |

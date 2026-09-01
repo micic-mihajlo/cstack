@@ -123,7 +123,9 @@ Use subagents only when they buy independent evidence, bounded parallel implemen
 - Code changes use `worker` or the closest specialized role with explicit file ownership.
 - Every implementation receives a `code-reviewer` pass. Add `security-reviewer` when the change handles user input, auth, APIs, credentials, external events, or sensitive data.
 - Routed capabilities such as how, why, architect, arena, swarm, interrogate, and reflect keep their own role contracts.
-- Resolve optional model overrides through [model roles](references/model-roles.md). Validate current model names. Omit the override to inherit the parent when no valid override exists.
+- Resolve optional model and reasoning overrides through the capability's exact workflow key in [model roles](references/model-roles.md). Validate the pair against the current host. Never collapse workflow slots into generic agent types or silently substitute another model.
+- For delegated judgment or prose work not owned by a more specific capability, resolve `judgment_and_prose`.
+- For the rare hardest-task escalation not owned by a more specific capability, resolve `hardest_tasks`. A named workflow key always wins over this catch-all.
 - Subagents share the filesystem. Give parallel writers disjoint files or isolated worktrees. Tell each writer to preserve other agents' changes.
 - Spawn independent work before waiting. Prefer event waits. Do not poll with long sleeps.
 - A stopped or interrupted child may have dropped a directive. Start a fresh child with consolidated scope when correctness depends on it.
