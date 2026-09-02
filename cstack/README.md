@@ -6,13 +6,13 @@ The goal is less code, better judgment, verifiable outcomes, and parallel work y
 
 ## Install
 
-For a new personal installation, put this directory at Codex's current user-skill location:
+For a personal installation, put this directory in your Codex skills folder:
 
 ```text
-~/.agents/skills/cstack/
+~/.codex/skills/cstack/
 ```
 
-Repository-shared installations belong at `.agents/skills/cstack/`. This machine's working copy is intentionally still at `~/.codex/skills/cstack/`, the path supplied by its owner and currently loaded by Codex; do not move or duplicate it as part of an in-place update.
+This repository already has the right directory shape, so you can install it from the checkout with `cp -R cstack ~/.codex/skills/`.
 
 Restart Codex or start a fresh task, then confirm cstack appears in the skill list. Invoke it explicitly with `$cstack`. Its description also supports implicit routing for non-trivial engineering work.
 

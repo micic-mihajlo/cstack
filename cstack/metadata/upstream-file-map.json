@@ -204,51 +204,39 @@
     },
     {
       "upstreamPath": "docs/guide/images/design.jpg",
-      "mappedLocalPaths": [
-        "docs/guide/images/design.jpg"
-      ],
-      "treatment": "preserved",
-      "localSha256": "b8ed07427f6a0c37dd8ba97961fc0eb5071efeee6c4a230648bdb7547f6f2a8f"
+      "mappedLocalPaths": [],
+      "treatment": "omitted-by-user-scope",
+      "rationale": "The upstream guide illustration is not distributed with cstack."
     },
     {
       "upstreamPath": "docs/guide/images/overnight.jpg",
-      "mappedLocalPaths": [
-        "docs/guide/images/overnight.jpg"
-      ],
-      "treatment": "preserved",
-      "localSha256": "4b4405e4df8925c5b3abbe702f681af0f3b1f5f32271b599f95717f578f1a0c8"
+      "mappedLocalPaths": [],
+      "treatment": "omitted-by-user-scope",
+      "rationale": "The upstream guide illustration is not distributed with cstack."
     },
     {
       "upstreamPath": "docs/guide/images/recipes.jpg",
-      "mappedLocalPaths": [
-        "docs/guide/images/recipes.jpg"
-      ],
-      "treatment": "preserved",
-      "localSha256": "9fa2d51b476635712737795ddef81806efaa0086bb3bfa9f9f45695d9ab0f8e8"
+      "mappedLocalPaths": [],
+      "treatment": "omitted-by-user-scope",
+      "rationale": "The upstream guide illustration is not distributed with cstack."
     },
     {
       "upstreamPath": "docs/guide/images/router.jpg",
-      "mappedLocalPaths": [
-        "docs/guide/images/router.jpg"
-      ],
-      "treatment": "preserved",
-      "localSha256": "525843055a4efd2b10acc50a8652fd02b0834ea733a8a2f895c1eb89036017da"
+      "mappedLocalPaths": [],
+      "treatment": "omitted-by-user-scope",
+      "rationale": "The upstream guide illustration is not distributed with cstack."
     },
     {
       "upstreamPath": "docs/guide/images/understanding.jpg",
-      "mappedLocalPaths": [
-        "docs/guide/images/understanding.jpg"
-      ],
-      "treatment": "preserved",
-      "localSha256": "b60587e9a9bbe2550e93be9819cf0cd4acf77d90fac769a0c43d82bd8e34e279"
+      "mappedLocalPaths": [],
+      "treatment": "omitted-by-user-scope",
+      "rationale": "The upstream guide illustration is not distributed with cstack."
     },
     {
       "upstreamPath": "docs/guide/images/verification.jpg",
-      "mappedLocalPaths": [
-        "docs/guide/images/verification.jpg"
-      ],
-      "treatment": "preserved",
-      "localSha256": "2a76b52007a1cd2866ba67fd47d7d9ef3e1118bb5a09c4665eee8c3f161bd09a"
+      "mappedLocalPaths": [],
+      "treatment": "omitted-by-user-scope",
+      "rationale": "The upstream guide illustration is not distributed with cstack."
     },
     {
       "upstreamPath": "skills/architect/SKILL.md",

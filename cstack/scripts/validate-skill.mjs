@@ -528,7 +528,7 @@ for (const path of expectedLocalRequired) {
 const imageCount = relativeFiles.filter((path) =>
   /^docs\/guide\/images\/[^/]+\.jpg$/.test(path)
 ).length;
-if (imageCount !== 6) fail(`expected 6 guide images, found ${imageCount}`);
+if (imageCount !== 0) fail(`expected no distributed guide images, found ${imageCount}`);
 
 const rootSkill = text(join(root, "SKILL.md"));
 if (!rootSkill.startsWith("---\n")) fail("SKILL.md has no YAML frontmatter");
@@ -809,6 +809,7 @@ if (!Array.isArray(fileMap.entries)) {
   }
   const expectedOmitted = [
     ...expectedBennyFiles,
+    ...expectedGuideImages,
     "skills/poteto-mode/scripts/watch-pr/fakes.test-helper.ts",
   ].sort();
   if (omitted.sort().join("\n") !== expectedOmitted.join("\n")) {
@@ -990,5 +991,5 @@ if (errors.length) {
 }
 
 process.stdout.write(
-  `cstack validation passed: 23 playbooks, 21 principles, 23 capabilities, 6 guide images, ${files.length} files\n`
+  `cstack validation passed: 23 playbooks, 21 principles, 23 capabilities, ${files.length} files\n`
 );

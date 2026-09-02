@@ -66,9 +66,9 @@ The twelve upstream Benny files are intentionally omitted. The Codex port had no
 
 The upstream fake helper is also omitted because cstack forbids fake tests, mocks, stubs, spies, simulated transports, and monkey patches. Its translated tests use pure domain checks and real processes instead.
 
-## Guide and media inventory
+## Guide inventory
 
-All ten guide chapters, the guide index, and all six image assets are present. The former `02-poteto-mode.md` maps to `02-cstack.md`. Image-byte identity is a separate hash check. The guide text is a Codex translation and requires semantic review rather than filename comparison.
+All ten guide chapters and the guide index are present. The former `02-poteto-mode.md` maps to `02-cstack.md`. The six upstream guide illustrations are intentionally omitted from this distribution. The guide text is a Codex translation and requires semantic review rather than filename comparison.
 
 ## Current verification map
 

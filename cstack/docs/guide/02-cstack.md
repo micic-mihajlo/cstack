@@ -2,8 +2,6 @@
 
 `$cstack` is the front door. You give it a goal, it matches one of twenty-three playbooks, copies that playbook's steps into the active plan, and loads other capability contracts as needed.
 
-![A dispatcher pulls a switch lever to route robots on rail handcars toward lit gates, under a $cstack departure board listing BUG FIX, FEATURE, and INVESTIGATION.](./images/router.jpg)
-
 ## What happens to your prompt
 
 ```mermaid
